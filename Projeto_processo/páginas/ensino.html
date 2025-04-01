@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Educação</title>
+</head>
+<body>
+    <header>
+        <h1>Site de aprendizagem virtual</h1>
+    </header>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="ensino.html">Area de Ensino</a>
+        <a href="user.html">Area de Aluno</a>
+        <a href="conf.html">Configurações</a>
+    </nav>
+    <main>
+        <section><!--Sessão de modulos-->
+            <h2>Módulos de Ensino</h2>
+            <p>Conclua os módulos e ganhe conhecimento em informatica.</p>
+        </section>
+
+        <section id="modulos">
+            <button onclick="carregarModulo('basico.html')" id="btn-basico">Módulo Básico</button>
+            <button onclick="carregarModulo('intermediario.html')" id="btn-intermediario">Módulo Intermediário</button>
+            <button onclick="carregarModulo('avancado.html')" id="btn-avancado">Módulo Avançado</button>
+        </section>
+        
+        <section id="modulo-container">
+            <p>Selecione um módulo para começar.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Site projetoIntegrador @ 2025 <a href="IDPAGE.html">Quem Somos?</a></p>
+    </footer>
+    
+    <script src="/public/JavaScript/ensino.js"></script>
+</body>
+</html>

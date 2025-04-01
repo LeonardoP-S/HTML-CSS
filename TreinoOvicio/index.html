@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Um bot que irá moderar e deixar sua comunidade segura de um jeito facil">
+    <title>O Vício - O melhor sobre Quadrinhos, Cinema, Séries e Games!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header><!--Inicio do Cabesalho do site e logo-->>
+        <h1 class="logo"><a href="index.html">OVÍCIO</a></h1>
+        <button id="menu-toggle">☰ Menu</button> <!--Botão para exibir/esconder o menu em telas menores-->
+
+        <nav class="menu"> <!--Navegação pelo site através de categorias-->>
+            <ul>
+                <!--Categoria Filmes com submenu-->
+                <li class="dropdown">
+                    <a href="#">FILMES</a>
+                    <ul class="submenu">
+                        <li><a href="#">NOTÍCIAS</a></li>
+                        <li><a href="#">CRÍTICAS</a></li>
+                        <li><a href="#">TODOS OS FILMES</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <!--Categoria Séries com submenu-->
+                    <a href="#">SÉRIES</a>
+                    <ul class="submenu">
+                        <li><a href="#">NOTÍCIAS</a></li>
+                        <li><a href="#">CRÍTICAS</a></li>
+                        <li><a href="#">TODOS AS SÉRIES</a></li>
+                    </ul>
+                </li>
+                <!--categorias simples sem submenu-->
+                <li><a href="#">DC</a></li>
+                <li><a href="#">MARVEL</a></li>
+                <li class="dropdown">
+                    <!--Categoria Quadrinhos com submenu-->
+                    <a href="#">QUADRINHOS</a>
+                    <ul class="submenu">
+                        <li><a href="#">NOTÍCIAS</a></li>
+                        <li><a href="#">GUIAS DE LEITURA</a></li>
+                        <li><a href="#">COLEÇÕES</a></li>
+                        <li><a href="#">CHECKLIST</a></li>
+                        <li><a href="#">REVIEWS DE HQS</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <!--Categoria Games com submenu-->
+                    <a href="#">GAMES</a>
+                    <ul class="submenu">
+                        <li><a href="#">NOTÍCIAS</a></li>
+                        <li><a href="#">REVIEWS DE GAMES</a></li>
+                        <li><a href="#">PC</a></li>
+                        <li><a href="#">NINTENDO</a></li>
+                        <li><a href="#">PLAYSTATION</a></li>
+                        <li><a href="#">XBOX</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <!--Categoria Animes & Mangás com submenu-->
+                    <a href="#">ANIMES & MANGÁS</a>
+                    <ul class="submenu">
+                        <li><a href="#">NOTÍCIAS</a></li>
+                        <li><a href="#">MANGÁS</a></li>
+                        <li><a href="#">TODOS OS ANIMES</a></li>
+                    </ul>
+                </li>
+                <!--Categoria sem submenu-->
+                <li><a href="#">ARTIGOS</a></li>
+            </ul>
+        </nav>
+        <nav class="busca"><!--area de busca por palavras chaves-->
+            <label for="busca">Pesquisar</label>
+            <input type="text" id="busca"
+            name="busca" placeholder="Pesquisar...">
+        </nav>
+        <nav class="social"> <!--navegação de redes sociais-->
+            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Youtube</a>
+            <a href="#" target="_blank" rel="">Threads</a>
+        </nav>
+    </header>
+    <main>
+        <section><!--Stories do site noticias rapidas-->
+            <h1>Stories</h1>
+        </section>
+        <section><!--Sessão de Destaques-->
+            <h1>Destaques</h1>
+        </section>
+        <section><!--Sessão de Criticas e reviews-->
+            <h1>Críticas</h1>
+        </section>
+        <section><!--Últimas noticias-->
+            <h1>Últimas</h1>
+        </section>
+        <section><!--aparece -->
+            <h1>Guias</h1>
+        </section>
+        <section class="parceiros"><!--Sessão de parceiros-->
+            <nav class="parceiros">
+                <a href="index.html">OVICIO</a>
+                <a href="#">OVERPLAY</a>
+                <a href="#">MURAMASA</a>
+            </nav>
+        </section>
+    </main>
+
+    <footer>
+        <p class="paragrafo-footer">O Vício © 2011 - 2025 <a href="#">Anuncie</a><a href="#"> Contato</a><a href="#"> Quem Somos?</a></p>
+    </footer>
+
+    <!--Cookies-->
+    <p>Este site usa cookies para garantir uma melhor experiência. Ao continuar a navegar, você está de acordo com isso. Para saber mais, acesse: <a href="#">Política de privacidade</a></p>
+    <button id="cookies">Entendi</button>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
