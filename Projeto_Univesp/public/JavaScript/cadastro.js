@@ -6,11 +6,15 @@ async function cadastrarUsuario(event) {
     const email = document.getElementById('emailcadastro').value.trim();
     const senha = document.getElementById('passawordcadastro').value.trim();
     const confirmacaoSenha = document.getElementById('senhacadastro').value.trim();
-    const role = document.getElementById('rolecadastro').value.trim(); // se tiver campo "função"
+
+    if (!nome || !sobrenome || !email || !senha || !confirmacaoSenha) {
+        alert("Preencha todos os campos!");
+        return;
+    }
 
     if (senha !== confirmacaoSenha) {
-        alert('As senhas não conferem!');
-        return;
+        alert("As senhas não conferem!");
+        return;;
     }
 
     try {
@@ -31,14 +35,14 @@ async function cadastrarUsuario(event) {
         const dados = await resposta.json();
 
         if (resposta.ok) {
-            alert("Cadastro realizado com sucesso!");
+            alert("Usuário cadastrado com sucesso!");
             window.location.href = "login.html";
         } else {
-            alert(`Erro: ${dados.error || "Não foi possível cadastrar."}`);
+            alert(`Erro ao cadastrar: ${dados.error || 'Não foi possível cadastrar.'}`);
         }
 
     } catch (erro) {
-        console.error("Erro na requisição:", erro);
-        alert("Erro ao se conectar com o servidor.");
+        console.error("Erro de conexão:", erro);
+        alert("Erro ao conectar com o servidor.");
     }
 }

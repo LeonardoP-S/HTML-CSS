@@ -1,59 +1,59 @@
-// Pega o nome do módulo com base no nome do arquivo (ex: quizB.html → B)
-const modulo = window.location.pathname.split("/").pop().replace("quiz", "").replace(".html", ""); // pega 'quizB' de 'quizB_quiz.html'
-
-function finalizarQuiz() {
-    const totalPerguntas = 8;
-    let pontuacao = 0;
-    let respostasCorretas = {
-        q1: "c",
-        q2: "c",
-        q3: "c",
-        q4: "c",
-        q5: "c",
-        q6: "d",
-        q7: "a",
-        q8: "b"
-    };
-
-    const percentual = Math.round((pontuacao / totalPerguntas) * 100);
-
-    // Exibe resultado
-    alert(`Você acertou ${pontuacao} de ${totalPerguntas} perguntas. Pontuação: ${percentual}%`);
-
-    // Salva no localStorage
-    let aluno = JSON.parse(localStorage.getItem("aluno")) || {};
-    if (!aluno.modulos) aluno.modulos = {};
-    if (!aluno.modulos[modulo]) aluno.modulos[modulo] = {};
-
-    aluno.modulos[modulo].quizConcluido = true;
-    aluno.modulos[modulo].pontuacao = percentual;
-    localStorage.setItem("aluno", JSON.stringify(aluno));
-}
+let quizFinalizado = false;
 
 function sairDoQuiz() {
     const totalPerguntas = 8;
-    let respondidas = 0;
+    let pontuacao = 0;
+    const respostasCorretas = {
+        q1: "b", q2: "c", q3: "d", q4: "c",
+        q5: "c", q6: "d", q7: "a", q8: "b"
+    };
 
-    for (let i = 1; i <= totalPerguntas; i++) {
-        const resposta = document.querySelector(`input[name="q${i}"]:checked`);
-        if (resposta) respondidas++;
-    }
-
-    if (respondidas < totalPerguntas) {
-        alert("Você não respondeu todas as perguntas. Finalize o quiz antes de sair.");
-        return;
-    }
-
-    window.location.href = "/paginas/ensino.html";
-}
-
-// Impede fechar a aba sem responder tudo
-window.onbeforeunload = function () {
-    const totalPerguntas = 8;
     for (let i = 1; i <= totalPerguntas; i++) {
         const resposta = document.querySelector(`input[name="q${i}"]:checked`);
         if (!resposta) {
-            return "Você ainda não respondeu todas as perguntas. Deseja realmente sair?";
+            alert("Você não respondeu todas as perguntas.");
+            return;
         }
+        if (resposta.value === respostasCorretas[`q${i}`]) {
+            pontuacao++;
+        }
+    }
+
+    const percentual = Math.round((pontuacao / totalPerguntas) * 100);
+    alert(`Você acertou ${pontuacao} de ${totalPerguntas}. Pontuação: ${percentual}%.`);
+
+    // Atualiza o progresso independentemente da nota
+    let aluno = JSON.parse(localStorage.getItem("aluno")) || {
+        modulos: {
+            basico: { concluido: false, liberado: true },
+            intermediario: { concluido: false, liberado: false },
+            avancado: { concluido: false, liberado: false }
+        }
+    };
+
+    aluno.modulos[modulo] = {
+        quizConcluido: true,
+        pontuacao: percentual,
+        liberado: true,
+        concluido: percentual >= 70
+    };
+
+    // Desbloqueia intermediário se acertar 70% ou mais no básico
+    if (modulo === "basico" && percentual >= 70) {
+        aluno.modulos.intermediario.liberado = true;
+        alert("Parabéns! O módulo intermediário foi desbloqueado.");
+    }
+
+    localStorage.setItem("aluno", JSON.stringify(aluno));
+
+    // Marca como finalizado e redireciona
+    quizFinalizado = true;
+    window.location.href = "/paginas/ensino.html";
+}
+
+// Impede o usuário de sair sem terminar
+window.onbeforeunload = function () {
+    if (!quizFinalizado) {
+        return "Tem certeza que deseja sair? Suas respostas podem ser perdidas.";
     }
 };

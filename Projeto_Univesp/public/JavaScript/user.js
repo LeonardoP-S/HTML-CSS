@@ -51,24 +51,33 @@ function atualizarProgreso(valor) {
 }
 
 //função para editar perfil
-function habilitarEdicamc() {
-    document.getElementById("nome-aluno").disabled = false;
-    document.getElementById("email-aluno").disabled = false;
-    document.getElementById("senha-aluno").disabled = false;
-    document.getElementById("btnSalvar").style.display = "inline-block";
+function alternarEdicao(editar) {
+    document.getElementById("nome-aluno").disabled = !editar;
+    document.getElementById("email-aluno").disabled = !editar;
+    document.getElementById("senha-aluno").disabled = !editar;
+
+    const btnSalvar = document.getElementById("btnSalvar");
+    if (btnSalvar) {
+        btnSalvar.style.display = editar ? "inline-block" : "none";
+    }
 }
 
 // Salvar as alterações
 function SalvarEdição() {
-    const nome = document.getElementById("nome-aluno").value.trim();
-    const email = document.getElementById("email-aluno").value.trim();
-    const senha = document.getElementById("senha-aluno").value;
+    const nomeInput = document.getElementById("nome-aluno");
+    const emailInput = document.getElementById("email-aluno");
+    const senhaInput = document.getElementById("senha-aluno");
+    const btnSalvar = document.getElementById("btnSalvar");
+
+    const nome = nomeInput.value.trim();
+    const email = emailInput.value.trim();
+    const senha = senhaInput.value;
 
     const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const senhaForte = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
 
     if (!nome || !email || !senha) {
-        alert("todos os campos são obrigatórios.");
+        alert("Todos os campos são obrigatórios.");
         return;
     }
 
@@ -82,19 +91,18 @@ function SalvarEdição() {
         return;
     }
 
-    const aluno = JSON.parse(localStorage.getItem("aluno")) || {};
-    aluno.nome = nome;
-    aluno.email = email;
-    aluno.senha = senha;
-
+    // Salvar no localStorage
+    const aluno = { nome, email, senha };
     localStorage.setItem("aluno", JSON.stringify(aluno));
 
-    document.getElementById("nome-aluno").disabled = true;
-    document.getElementById("email-aluno").disabled = true;
-    document.getElementById("senha-aluno").disabled = true;
-    document.getElementById("btnSalvar").style.display = "none";
+    // Desativa os campos e esconde o botão
+    nomeInput.disabled = true;
+    emailInput.disabled = true;
+    senhaInput.disabled = true;
+    btnSalvar.style.display = "none";
 
-    alert("dados atualizados com sucesso!");
+    // Mensagem de sucesso (deve aparecer)
+    alert("Dados atualizados com sucesso!");
 }
 
 //Atualizar progresso manualmente (se for usado fora do botão principal)

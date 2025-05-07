@@ -13,8 +13,8 @@
     </header>
     <nav>
         <a href="index.html">Inicio</a>
-        <a href="ensino.html">Area de Ensino</a>
-        <a href="user.html">Area de Aluno</a>
+        <a href="ensino.html">Área de Ensino</a>
+        <a href="user.html">Área de Aluno</a>
         <button id="logoutButton">Sair</button>
     </nav>
 
@@ -46,8 +46,8 @@
             </div>
 
             <div class="botoes-edicao">
-                <button onclick="habilitarEdicao()">Editar</button>
-                <button onclick="salvarEdicao()" id="btnSalvar" style="display: none;">Salvar</button>
+                <button onclick="alternarEdicao(true)">Editar Perfil</button>
+                <button id="btnSalvar" onclick="SalvarEdição()" style="display: none;">Salvar</button>
             </div>
 
             <div class="info-linha">
